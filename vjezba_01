@@ -1,0 +1,41 @@
+// C++ code
+//
+int crvena = 7;
+int zuta = 6;
+int zelena = 5;
+int tipkalo = 10;
+int botuncic = 0;
+
+void setup()
+{
+  pinMode(crvena, OUTPUT);
+  pinMode(zuta, OUTPUT);
+  pinMode(zelena, OUTPUT);
+  pinMode(tipkalo, INPUT);
+  
+  digitalWrite(crvena, LOW); //da bude u startu sigurno pogašeno
+  digitalWrite(zuta, LOW); //da bude u startu sigurno pogašeno
+  digitalWrite(zelena, LOW); //da bude u startu sigurno pogašeno
+ 
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  botuncic = digitalRead(10);
+  
+if (botuncic == 1)
+  {
+  digitalWrite(crvena, HIGH);
+  digitalWrite(zuta, HIGH);
+  digitalWrite(zelena, HIGH);
+  Serial.println("Semafor je ukljucen");
+  }
+else
+  {
+  digitalWrite(crvena, LOW);
+  digitalWrite(zuta, LOW);
+  digitalWrite(zelena, LOW);
+  Serial.println("Semafor je iskljucen");
+  }
+}
