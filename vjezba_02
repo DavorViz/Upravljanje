@@ -1,0 +1,63 @@
+// C++ code
+//
+int crvena = 7;
+int zuta = 5;
+int zelena = 6;
+int tipkalo = 10;
+int botuncic = 0;
+int sensorValue = 0;
+
+void setup()
+{
+  pinMode(crvena, OUTPUT);
+  pinMode(zuta, OUTPUT);
+  pinMode(zelena, OUTPUT);
+  pinMode(tipkalo, INPUT);
+  pinMode(A0, INPUT);
+  
+  digitalWrite(crvena, LOW); //da bude u startu sigurno pogašeno
+  digitalWrite(zuta, LOW); //da bude u startu sigurno pogašeno
+  digitalWrite(zelena, LOW); //da bude u startu sigurno pogašeno
+ 
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  sensorValue = analogRead(A0);
+  Serial.println(sensorValue);
+ 
+   botuncic = digitalRead(10);
+ 
+if (botuncic == 1)
+  {
+  digitalWrite(crvena, HIGH);
+  digitalWrite(zuta, HIGH);
+  digitalWrite(zelena, HIGH);
+
+  }
+else
+  {
+  if
+    (sensorValue >=0 and sensorValue<=341)
+  {
+  digitalWrite(crvena, HIGH);
+  digitalWrite(zuta, LOW);
+  digitalWrite(zelena, LOW);
+  }
+  else if
+   (sensorValue >341 and sensorValue<=683)
+  {
+    digitalWrite(crvena, LOW);
+  digitalWrite(zuta, LOW);
+  digitalWrite(zelena, HIGH);
+  }
+  else if
+      (sensorValue >684 and sensorValue<1024)
+    {
+    digitalWrite(crvena, LOW);
+  digitalWrite(zuta, HIGH);
+  digitalWrite(zelena, LOW);
+    }
+  }
+}
